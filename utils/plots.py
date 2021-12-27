@@ -122,7 +122,8 @@ class Annotator:
             # cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), 0, self.lw / 3, txt_color,
             #                 thickness=tf, lineType=cv2.LINE_AA)
             #если заработает разобраться в переменных и исправить
-            cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), 1, (0, 255, 0), 3)
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), font, 1, (0, 255, 0), 3)
 
     def result(self):
         # Return annotated image as array
