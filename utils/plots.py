@@ -117,6 +117,7 @@ class Annotator:
             w, h = self.font.getsize(text)  # text width, height
             self.draw.text((xy[0], xy[1] - h + 1), text, fill=txt_color, font=self.font)
         else:  # cv2
+            #test
             tf = max(self.lw - 1, 1)  # font thickness
             w, h = cv2.getTextSize(text, 0, fontScale=self.lw / 3, thickness=tf)[0]  # text width, height
             cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), 0, self.lw / 3, txt_color,
