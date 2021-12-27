@@ -113,6 +113,7 @@ class Annotator:
 
     def text(self, xy, text, txt_color=(128, 128, 128)):
         # Add text to image (PIL-only)
+        print(text)
         if self.pil:
             w, h = self.font.getsize(text)  # text width, height
             self.draw.text((xy[0], xy[1] - h + 1), text, fill=txt_color, font=self.font)
@@ -123,7 +124,6 @@ class Annotator:
             #                 thickness=tf, lineType=cv2.LINE_AA)
             #если заработает разобраться в переменных и исправить
             font = cv2.FONT_HERSHEY_SIMPLEX
-            print(text)
             cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), font, 1, (0, 255, 0), 3)
 
     def result(self):
