@@ -111,20 +111,16 @@ class Annotator:
         # Add rectangle to image (PIL-only)
         self.draw.rectangle(xy, fill, outline, width)
 
-    def text(self, xy, text, txt_color=(128, 128, 128)):
+    def text(self, xy, text, txt_color=(255, 255, 255)):
         # Add text to image (PIL-only)
-        # if self.pil:
-        #     w, h = self.font.getsize(text)  # text width, height
-        #     self.draw.text((xy[0], xy[1] - h + 1), text, fill=txt_color, font=self.font)
-        # else:  # cv2
-        tf = max(self.lw - 1, 1)  # font thickness
-        w, h = cv2.getTextSize(text, 0, fontScale=self.lw / 3, thickness=tf)[0]  # text width, height
-        # cv2.putText(self.im, text, (int(xy[0]), int(xy[1])), 0, self.lw / 3, txt_color,
-        #                 thickness=tf, lineType=cv2.LINE_AA)
-        #если заработает разобраться в переменных и исправить
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        # cv2.putText(self.im, text, (int(xy[0]), int(xy[1])+h), font, 1, (0, 255, 0), 3)
-        cv2.putText(self.im, 'hi', (20, 20), font, 1, (0, 255, 0), 3)
+        if self.pil:
+            w, h = self.font.getsize(text)  # text width, height
+            self.draw.text((xy[0], xy[1] - h + 1), text, fill=txt_color, font=self.font)
+        else:  # cv2
+            tf = max(self.lw - 1, 1)  # font thickness
+            w, h = cv2.getTextSize(text, 0, fontScale=self.lw / 3, thickness=tf)[0]  # text width, height
+            cv2.putText(self.im, text, (int(xy[0]), int(xy[1]) + h + 2), 0, self.lw / 3, txt_color,
+                            thickness=tf, lineType=cv2.LINE_AA)
 
     def result(self):
         # Return annotated image as array
