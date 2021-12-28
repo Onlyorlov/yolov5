@@ -111,7 +111,7 @@ class Annotator:
         # Add rectangle to image (PIL-only)
         self.draw.rectangle(xy, fill, outline, width)
 
-    def text(self, xy, text, txt_color=(255, 255, 255)):
+    def text(self, xy, text, color=(128, 128, 128), txt_color=(255, 255, 255)):
         # Add text to image (PIL-only)
         if self.pil:
             w, h = self.font.getsize(text)  # text width, height
@@ -119,6 +119,7 @@ class Annotator:
         else:  # cv2
             tf = max(self.lw - 1, 1)  # font thickness
             w, h = cv2.getTextSize(text, 0, fontScale=self.lw / 3, thickness=tf)[0]  # text width, height
+            cv2.rectangle(self.im, (int(xy[0]), int(xy[1])), (int(xy[0] + w), int(xy[1] + h + 5)), color, -1, cv2.LINE_AA)  # filled
             cv2.putText(self.im, text, (int(xy[0]), int(xy[1]) + h + 2), 0, self.lw / 3, txt_color,
                             thickness=tf, lineType=cv2.LINE_AA)
 
