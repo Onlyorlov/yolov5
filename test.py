@@ -33,7 +33,7 @@ annotator = Annotator(im0, line_width=2, pil=not ascii)
 #             #     pass
 #         # if mask:
     
-annotator.text([0,0], f'{0} people in a target region', (0, 255, 0))
+annotator.text([0,0], f'{0} people in a target region')
 
 # Stream results
 im0 = annotator.result()
