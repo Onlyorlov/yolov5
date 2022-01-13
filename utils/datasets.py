@@ -314,8 +314,10 @@ class LoadMaskedImages:
             cv2.fillPoly(stencil, points, (255, 255, 255))
             imgm = cv2.bitwise_and(img0, stencil)
 
-        # Padded resize
-        img = letterbox(imgm, self.img_size, stride=self.stride, auto=self.auto)[0]
+            # Padded resize
+            img = letterbox(imgm, new_shape=self.img_size)[0]
+        else:
+            img = letterbox(img0, new_shape=self.img_size)[0]
 
         # Convert
         img = img.transpose((2, 0, 1))[::-1]  # HWC to CHW, BGR to RGB
