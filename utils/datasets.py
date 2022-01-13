@@ -548,8 +548,10 @@ class LoadMaskedStreams:
             cv2.fillPoly(stencil, points, (255, 255, 255))
             imgm = cv2.bitwise_and(img0, stencil)
         
-        # Letterbox
-        img = [letterbox(x, self.img_size, stride=self.stride, auto=self.rect and self.auto)[0] for x in imgm]
+            # Letterbox
+            img = [letterbox(x, self.img_size, stride=self.stride, auto=self.rect and self.auto)[0] for x in imgm]
+        else:
+            img = [letterbox(x, self.img_size, stride=self.stride, auto=self.rect and self.auto)[0] for x in img0]
 
         # Stack
         img = np.stack(img, 0)
