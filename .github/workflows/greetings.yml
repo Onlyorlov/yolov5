@@ -31,15 +31,15 @@ jobs:
 
             If this is a custom training ❓ Question, please provide as much information as possible, including dataset images, training logs, screenshots, and a public link to online [W&B logging](https://github.com/ultralytics/yolov5/wiki/Train-Custom-Data#visualize) if available.
 
-            For business inquiries or professional support requests please visit https://ultralytics.com or email Glenn Jocher at glenn.jocher@ultralytics.com.
+            For business inquiries or professional support requests please visit https://ultralytics.com or email support@ultralytics.com.
 
             ## Requirements
 
             [**Python>=3.6.0**](https://www.python.org/) with all [requirements.txt](https://github.com/ultralytics/yolov5/blob/master/requirements.txt) installed including [**PyTorch>=1.7**](https://pytorch.org/get-started/locally/). To get started:
             ```bash
-            $ git clone https://github.com/ultralytics/yolov5
-            $ cd yolov5
-            $ pip install -r requirements.txt
+            git clone https://github.com/ultralytics/yolov5  # clone
+            cd yolov5
+            pip install -r requirements.txt  # install
             ```
 
             ## Environments
