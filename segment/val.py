@@ -375,7 +375,7 @@ def run(
 
         try:  # https://github.com/cocodataset/cocoapi/blob/master/PythonAPI/pycocoEvalDemo.ipynb
             from pycocotools.coco import COCO
-            from pycocotools.cocoeval import COCOeval
+            from cocoeval import COCOeval
 
             anno = COCO(anno_json)  # init annotations api
             pred = anno.loadRes(pred_json)  # init predictions api
@@ -383,13 +383,14 @@ def run(
             for eval in COCOeval(anno, pred, 'bbox'), COCOeval(anno, pred, 'segm'):
                 if is_coco:
                     eval.params.imgIds = [int(Path(x).stem) for x in dataloader.dataset.im_files]  # img ID to evaluate
+                eval.params.maxDets = [100, 500, 2000]
                 eval.evaluate()
                 eval.accumulate()
                 eval.summarize()
                 results.extend(eval.stats[:2])  # update results (mAP@0.5:0.95, mAP@0.5)
             map_bbox, map50_bbox, map_mask, map50_mask = results
         except Exception as e:
-            LOGGER.info(f'pycocotools unable to run: {e}')
+            LOGGER.info(f'COCOEval unable to run: {e}')
 
     # Return results
     model.float()  # for training
