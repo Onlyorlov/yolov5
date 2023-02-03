@@ -383,7 +383,7 @@ def run(
             for eval in COCOeval(anno, pred, 'bbox'), COCOeval(anno, pred, 'segm'):
                 if is_coco:
                     eval.params.imgIds = [int(Path(x).stem) for x in dataloader.dataset.im_files]  # img ID to evaluate
-                eval.params.maxDets = [100, 500, 2000]
+                eval.params.maxDets = [100, 500, max_det]
                 eval.evaluate()
                 eval.accumulate()
                 eval.summarize()
